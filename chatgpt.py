@@ -7,7 +7,7 @@ from langchain.document_loaders import DirectoryLoader
 
 # 1: add API key as environment variable
 #API_KEY = env('OPENAI_API_KEY')
-os.environ["OPENAI_API_KEY"] = "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"
+os.environ["OPENAI_API_KEY"] = "redacted"
 
 # 2: load your data document
 #loader = TextLoader("data.txt")
