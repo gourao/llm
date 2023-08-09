@@ -1,11 +1,19 @@
-from langchain import OpenAI, SQLDatabase
+from langchain import OpenAI
+from langchain.chat_models import ChatOpenAI
+from langchain import SQLDatabase
 from langchain_experimental.sql import SQLDatabaseChain
 
 import environ
 env = environ.Env()
 environ.Env.read_env()
 
-API_KEY = "REDACTED"
+API_KEY = env('OPENAI_API_KEY')
+
+if API_KEY == "":
+	print("Missing OpenAPI key")
+	exit()
+
+print("Using OpenAPI with key ["+API_KEY+"]")
 
 # Setup database
 db = SQLDatabase.from_uri(
@@ -13,7 +21,7 @@ db = SQLDatabase.from_uri(
 )
 
 # setup llm
-llm = OpenAI(model_name="gpt-3.5-turbo",
+llm = ChatOpenAI(model_name="gpt-3.5-turbo",
 	temperature=0,
 	max_tokens=1000,
 	openai_api_key=API_KEY)
