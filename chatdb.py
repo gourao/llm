@@ -1,6 +1,7 @@
+import sys
 from langchain import OpenAI
-from langchain.chat_models import ChatOpenAI
 from langchain import SQLDatabase
+from langchain.chat_models import ChatOpenAI
 from langchain_experimental.sql import SQLDatabaseChain
 
 import environ
@@ -13,11 +14,19 @@ if API_KEY == "":
 	print("Missing OpenAPI key")
 	exit()
 
-print("Using OpenAPI with key ["+API_KEY+"]")
+
+if len(sys.argv) < 2:
+	print("Missing db connection string.  Example 'postgresql+psycopg2://postgres:1234@localhost:6667/mydb'")
+	exit()
+
+dbstring = sys.argv[1]
+
+print("Using OpenAPI with key ["+API_KEY+"] and Database ["+dbstring+"]")
 
 # Setup database
 db = SQLDatabase.from_uri(
-    f"postgresql+psycopg2://postgres:1234@localhost:6666/findb",
+    #f"postgresql+psycopg2://postgres:1234@localhost:6667/findb",
+    dbstring,
 )
 
 # setup llm
