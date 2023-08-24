@@ -1,4 +1,3 @@
-# chatgpt.py
 import os
 import sys
 from langchain.document_loaders import TextLoader

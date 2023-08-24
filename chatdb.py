@@ -14,7 +14,6 @@ if API_KEY == "":
 	print("Missing OpenAPI key")
 	exit()
 
-
 if len(sys.argv) < 2:
 	print("Missing db connection string.  Example 'postgresql+psycopg2://postgres:1234@localhost:6667/mydb'")
 	exit()
@@ -25,7 +24,6 @@ print("Using OpenAPI with key ["+API_KEY+"] and Database ["+dbstring+"]")
 
 # Setup database
 db = SQLDatabase.from_uri(
-    #f"postgresql+psycopg2://postgres:1234@localhost:6667/findb",
     dbstring,
 )
 
