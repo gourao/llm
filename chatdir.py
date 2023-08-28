@@ -6,7 +6,9 @@ from langchain.document_loaders import DirectoryLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 
 from langchain.embeddings import OpenAIEmbeddings
+
 from langchain.vectorstores import Chroma
+from langchain.retrievers import SVMRetriever
 
 from langchain.chains import RetrievalQA
 from langchain.chat_models import ChatOpenAI
@@ -32,17 +34,32 @@ if path == "":
 # Document loading
 loader = DirectoryLoader(path, glob="*")
 data = loader.load()
+print("Loading done")
 
 # Text splitting
-text_splitter = RecursiveCharacterTextSplitter(chunk_size = 500, chunk_overlap = 0)
+text_splitter = RecursiveCharacterTextSplitter(
+	chunk_size = 500, 
+	chunk_overlap = 0
+)
+
 all_splits = text_splitter.split_documents(data)
+print("Splitting done")
 
 # Create retriever
-vectorstore = Chroma.from_documents(documents=all_splits, embedding=OpenAIEmbeddings())
 
-# Connect to LLM for generation
-llm = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0)
-qa_chain = RetrievalQA.from_chain_type(llm,retriever=vectorstore.as_retriever())
+# Using Chroma
+vectorstore = Chroma.from_documents(
+	documents=all_splits, 
+	embedding=OpenAIEmbeddings()
+)
+'''
+# Using SVN
+vectorstore = SVMRetriever.from_documents(
+	all_splits,
+	OpenAIEmbeddings()
+)
+'''
+print("Vector store created")
 
 template = """Use the following pieces of context to answer the question at the end. 
 If you don't know the answer, just say that you don't know, don't try to make up an answer. 
@@ -53,12 +70,14 @@ Question: {question}
 Helpful Answer:"""
 QA_CHAIN_PROMPT = PromptTemplate.from_template(template)
 
-llm = ChatOpenAI(batch_size=5, model_name="gpt-3.5-turbo", temperature=0)
+# Connect to LLM for generation
+llm = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0)
 qa_chain = RetrievalQA.from_chain_type(
-    llm,
-    retriever=vectorstore.as_retriever(),
-    chain_type_kwargs={"prompt": QA_CHAIN_PROMPT}
+	llm,
+	retriever=vectorstore.as_retriever(),
+	chain_type_kwargs={"prompt": QA_CHAIN_PROMPT}
 )
+print("QA chain created")
 
 # prompt loop
 def get_prompt():
