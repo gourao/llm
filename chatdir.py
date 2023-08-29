@@ -8,7 +8,7 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.embeddings import OpenAIEmbeddings
 
 from langchain.vectorstores import Chroma
-from langchain.retrievers import SVMRetriever
+from langchain.vectorstores import Milvus
 
 from langchain.chains import RetrievalQA
 from langchain.chat_models import ChatOpenAI
@@ -47,18 +47,21 @@ print("Splitting done")
 
 # Create retriever
 
-# Using Chroma
+'''
 vectorstore = Chroma.from_documents(
 	documents=all_splits, 
 	embedding=OpenAIEmbeddings()
 )
 '''
-# Using SVN
-vectorstore = SVMRetriever.from_documents(
+
+MILVUS_HOST = "localhost"
+MILVUS_PORT = "19530"
+vectorstore = Milvus.from_documents(
 	all_splits,
-	OpenAIEmbeddings()
+	embedding=OpenAIEmbeddings(),
+    connection_args={"host": MILVUS_HOST, "port": MILVUS_PORT}
 )
-'''
+
 print("Vector store created")
 
 template = """Use the following pieces of context to answer the question at the end. 
