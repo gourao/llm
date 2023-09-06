@@ -1,7 +1,7 @@
 import os
+import json
 import sys
 import environ
-import pdb
 
 from langchain.document_loaders import DirectoryLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
@@ -64,22 +64,6 @@ vectorstore = Milvus.from_documents(
 
 print("Vector store created")
 
-template = """Use the following pieces of context to answer the question at the end. 
-{context}
-Question: {question}
-Helpful Answer:"""
-QA_CHAIN_PROMPT = PromptTemplate.from_template(template)
-
-# Connect to LLM for generation
-llm = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0.7)
-qa_chain = RetrievalQA.from_chain_type(
-	llm,
-	retriever=vectorstore.as_retriever(),
-	chain_type_kwargs={"prompt": QA_CHAIN_PROMPT}
-)
-print("QA chain created")
-
-
 # prompt loop
 def get_prompt():
 	print("Type 'exit' to quit")
@@ -92,9 +76,10 @@ def get_prompt():
 			break
 		else:
 			try:
-				pdb.set_trace()
-				result = qa_chain({"query": prompt})
-				print(result["result"])
+				docs = vectorstore.similarity_search(prompt)
+				print(docs)
+				for i in len(docs):
+					print(json.dumps(docs[i], indent=2))
 			except Exception as e:
 				print(e)
 
