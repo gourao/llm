@@ -15,7 +15,7 @@ with open(path, 'r') as json_file:
 
 def merge_schemas(schema_list):
     unified_schema = {}
-    
+ 
     for schema in schema_list:
         if isinstance(schema, dict):
             for key, value in schema.items():
@@ -25,7 +25,7 @@ def merge_schemas(schema_list):
                     unified_schema[key] = merge_schemas([unified_schema[key], value])
         elif isinstance(schema, list):
             if len(schema) > 0 and all(isinstance(item, dict) for item in schema):
-                unified_schema = merge_schemas([unified_schema] + schema)
+                unified_schema = [merge_schemas([unified_schema] + schema)]
     
     return unified_schema
 
@@ -37,7 +37,7 @@ def extract_schema(data):
         return schema
     elif isinstance(data, list):
         schema_list = [extract_schema(item) for item in data]
-        return merge_schemas(schema_list)
+        return [merge_schemas(schema_list)]
     else:
         return type(data).__name__
 
