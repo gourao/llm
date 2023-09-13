@@ -5,6 +5,7 @@ from langchain.chat_models import ChatOpenAI
 from langchain_experimental.sql import SQLDatabaseChain
 
 import environ
+
 env = environ.Env()
 environ.Env.read_env()
 

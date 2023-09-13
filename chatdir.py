@@ -92,7 +92,7 @@ def get_prompt():
 			break
 		else:
 			try:
-				pdb.set_trace()
+				# pdb.set_trace()
 				result = qa_chain({"query": prompt})
 				print(result["result"])
 			except Exception as e:
