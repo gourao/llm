@@ -41,16 +41,32 @@ if schema_name == "":
 	exit()
 
 with open(schema_name, 'r') as json_file:
-	schema= json.load(json_file)
+	schema = json.dumps(json.load(json_file), separators=(',', ':'))
 	print(schema)
 
 print("Using :", mongo_uri, ":", "["+db_name+"]")
 
 # setup llm
 llm = ChatOpenAI(model_name="gpt-3.5-turbo",
-	temperature=0,
+	temperature=0.7,
 	max_tokens=1024,
 	openai_api_key=API_KEY)
+
+# DEBUG
+dbg_prompt = PromptTemplate(
+    input_variables=["schema"],
+    template="""Given the schema below construct a json nosql query to find all volumes with three replicas
+
+				{schema}
+			"""
+)
+dbg_chain = LLMChain(llm=llm, prompt=dbg_prompt)
+
+print(dbg_chain.run({
+	'schema': schema
+}))
+
+exit()
 
 # Create prompt chain
 prompt = PromptTemplate(
@@ -78,7 +94,6 @@ def chatmongo(collection):
 			print(chain.run({
 				'collection': collection.name,
 				'schema': schema, 
-				#'schema': "{\"id\": \str\"}",
 				'question': prompt
 				}))
 
