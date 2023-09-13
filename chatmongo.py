@@ -3,6 +3,7 @@ import sys
 import environ
 
 import pymongo
+import json
 
 from langchain import OpenAI
 from langchain.chat_models import ChatOpenAI
@@ -34,18 +35,27 @@ if collection_name == "":
 	print("Missing Collection")
 	exit()
 
+schema_name = sys.argv[4]
+if schema_name == "":
+	print("Missing Schema")
+	exit()
+
+with open(schema_name, 'r') as json_file:
+	schema= json.load(json_file)
+	print(schema)
+
 print("Using :", mongo_uri, ":", "["+db_name+"]")
 
 # setup llm
 llm = ChatOpenAI(model_name="gpt-3.5-turbo",
-	temperature=0.7,
+	temperature=0,
 	max_tokens=1024,
 	openai_api_key=API_KEY)
 
 # Create prompt chain
 prompt = PromptTemplate(
     input_variables=["collection", "schema", "question"],
-    template="""Using the Schema Below, create a syntactically correct NoSQL query to run.  The following first has the schema followed by a question to ask on a database given that schema.
+    template="""Using the Schema Below, create a syntactically correct Mongo NoSQL query that matches the schema to run.  First is the collection, followed by the schema and then the question.
 				Collection: {collection}
 				Schema: {schema}
 				Question: {question}
@@ -67,8 +77,9 @@ def chatmongo(collection):
 		else:
 			print(chain.run({
 				'collection': collection.name,
-				'schema': "{\"id\": \"str\"}", 
-				'question': "how do I find all ids"
+				'schema': schema, 
+				#'schema': "{\"id\": \str\"}",
+				'question': prompt
 				}))
 
 try:
@@ -79,8 +90,9 @@ try:
 	database_names = client.list_database_names()
 
 	# Print the list of database names
+	print("Databases in the cluster:")
 	for name in database_names:
-		print("Database:", name)
+		print(name)
 
 	db = client[db_name]
 
@@ -88,7 +100,7 @@ try:
 	collection_names = db.list_collection_names()
 
 	if collection_names:
-		print("Collections in the database:")
+		print("Collections in the database: ", db_name)
 		for collection in collection_names:
 			print(collection)
 
