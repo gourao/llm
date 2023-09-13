@@ -43,17 +43,10 @@ llm = ChatOpenAI(model_name="gpt-3.5-turbo",
 	openai_api_key=API_KEY)
 
 # Create prompt chain
-QUERY = """
-Using the Schema Below, create a syntactically correct NoSQL query to run.  The following first has the schema followed by a question to ask on a database given that schema.
-
-Schema: {schema}
-
-Question: {question}
-"""
-
 prompt = PromptTemplate(
-    input_variables=["schema", "question"],
+    input_variables=["collection", "schema", "question"],
     template="""Using the Schema Below, create a syntactically correct NoSQL query to run.  The following first has the schema followed by a question to ask on a database given that schema.
+				Collection: {collection}
 				Schema: {schema}
 				Question: {question}
 			"""
@@ -62,6 +55,7 @@ prompt = PromptTemplate(
 chain = LLMChain(llm=llm, prompt=prompt)
 
 def chatmongo(collection):
+	print("Entering chat session with ", collection.name)
 	print("Type 'exit' to quit")
 
 	while True:
@@ -72,6 +66,7 @@ def chatmongo(collection):
 			break
 		else:
 			print(chain.run({
+				'collection': collection.name,
 				'schema': "{\"id\": \"str\"}", 
 				'question': "how do I find all ids"
 				}))
@@ -97,12 +92,8 @@ try:
 		for collection in collection_names:
 			print(collection)
 
-		# Add data to first collection
 		collection = db.collections[collection_name]
-		print("Entering NeuBird session with ", collection)
-
 		chatmongo(collection)
-
 	else:
 		print("No collections found in the database.")
 

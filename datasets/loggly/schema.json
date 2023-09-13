@@ -1,0 +1,477 @@
+{
+  "events": [
+    {
+      "id": "str",
+      "timestamp": "int",
+      "logmsg": "str",
+      "raw": "str",
+      "event": {
+        "json": {
+          "Org": {
+            "UID": "str",
+            "Name": "str"
+          },
+          "Schedule": {
+            "Count": "int"
+          },
+          "FrontEndCapacity": "int",
+          "Cluster": {
+            "TotalNodes": "int",
+            "Count": "int",
+            "Provider": {
+              "GKE": "int",
+              "K8S": "int",
+              "AKS": "int",
+              "EKS": "int",
+              "OPEN-SHIFT": "int"
+            },
+            "Status": "int",
+            "NodeId": "str",
+            "Id": "str",
+            "Nodes": [
+              {
+                "Status": "int",
+                "GenNumber": "int",
+                "DataIp": "str",
+                "HWType": "int",
+                "StartTime": "str",
+                "Hostname": "str",
+                "Cpu": "float",
+                "MemTotal": "int",
+                "MgmtIp": "str",
+                "GossipPort": "str",
+                "Pools": [
+                  {
+                    "RaidLevel": "str",
+                    "Used": "int",
+                    "Cos": "int",
+                    "Medium": "int",
+                    "TotalSize": "int",
+                    "uuid": "str",
+                    "labels": {
+                      "kubernetes.io/hostname": "str",
+                      "kubernetes.io/arch": "str",
+                      "kubernetes.io/os": "str",
+                      "beta.kubernetes.io/arch": "str",
+                      "beta.kubernetes.io/instance-type": "str",
+                      "beta.kubernetes.io/os": "str",
+                      "medium": "str",
+                      "iopriority": "str",
+                      "node.kubernetes.io/instance-type": "str"
+                    }
+                  }
+                ],
+                "Timestamp": "str",
+                "NodeLabels": {
+                  "Data IP": "str",
+                  "Management IP": "str",
+                  "Kernel Version": "str",
+                  "OS": "str",
+                  "PX Version": "str"
+                },
+                "NodeData": {
+                  "KvdbState": {
+                    "KvdbWatchIndex": "int",
+                    "KvdbPreviousLowestWatchIndex": "int",
+                    "NodeKvdbState": "int"
+                  },
+                  "STORAGE-RUNTIME": {
+                    "PoolUsage": {
+                      "0": {
+                        "TotalAllocated": "int",
+                        "Cache": {
+                          "CacheDemotion": "int",
+                          "CacheWriteMisses": "int",
+                          "CacheIOMBps": "int",
+                          "CacheDirtyBlocks": "int",
+                          "Enabled": "bool",
+                          "CacheTotalBlocks": "int",
+                          "CacheChunkSize": "int",
+                          "MaxDirtyUtilPercent": "int",
+                          "DirtyState": "int",
+                          "MinDirtyUtilPercent": "int",
+                          "CachePolicy": "str",
+                          "CacheReadMisses": "int",
+                          "CachePromotion": "int",
+                          "CacheUsedBlocks": "int",
+                          "CacheReadHits": "int",
+                          "Pool": "int",
+                          "CacheSettings": "str",
+                          "Cachemode": "str",
+                          "AutoTune": "bool",
+                          "CacheWriteHits": "int"
+                        }
+                      }
+                    },
+                    "Usage": {
+                      "TotalAllocated": "int",
+                      "Cache": {
+                        "CacheDemotion": "int",
+                        "CacheWriteMisses": "int",
+                        "CacheIOMBps": "int",
+                        "CacheDirtyBlocks": "int",
+                        "Enabled": "bool",
+                        "CacheTotalBlocks": "int",
+                        "CacheChunkSize": "int",
+                        "MaxDirtyUtilPercent": "int",
+                        "DirtyState": "int",
+                        "MinDirtyUtilPercent": "int",
+                        "CachePolicy": "str",
+                        "CacheReadMisses": "int",
+                        "CachePromotion": "int",
+                        "CacheUsedBlocks": "int",
+                        "CacheReadHits": "int",
+                        "Pool": "int",
+                        "CacheSettings": "str",
+                        "Cachemode": "str",
+                        "AutoTune": "bool",
+                        "CacheWriteHits": "int"
+                      }
+                    },
+                    "MID": "str"
+                  },
+                  "storage_stats": {
+                    "DiskAvail": "int",
+                    "Memory": "int",
+                    "DiskTotal": "int",
+                    "DiskUtil": "int",
+                    "Cpu": "float",
+                    "PendingIo": "int"
+                  },
+                  "STORAGE-INFO": {
+                    "Status": "str",
+                    "Random4KIops": "int",
+                    "ResourcesCount": "int",
+                    "ReadThroughput": "int",
+                    "WriteThroughput": "int",
+                    "PoolSize": "int",
+                    "ResourceUUID": "str",
+                    "ResourcesLastScan": "str",
+                    "TotalSize": "int",
+                    "ResourceJournalUUID": "str",
+                    "LastError": "str",
+                    "Used": "int",
+                    "ResourceSystemMetadataUUID": "str",
+                    "Resources": {
+                      "0:1": {
+                        "path": "str",
+                        "size": "int",
+                        "last_scan": {
+                          "seconds": "int",
+                          "nanos": "int"
+                        },
+                        "online": "bool",
+                        "id": "str",
+                        "medium": "int",
+                        "used": "int",
+                        "seq_write": "int",
+                        "rotation_speed": "str"
+                      }
+                    },
+                    "Cache": {
+                      "CacheDemotion": "int",
+                      "CacheWriteMisses": "int",
+                      "CacheIOMBps": "int",
+                      "CacheDirtyBlocks": "int",
+                      "Enabled": "bool",
+                      "CacheTotalBlocks": "int",
+                      "CacheChunkSize": "int",
+                      "MaxDirtyUtilPercent": "int",
+                      "DirtyState": "int",
+                      "MinDirtyUtilPercent": "int",
+                      "CachePolicy": "str",
+                      "CacheReadMisses": "int",
+                      "CachePromotion": "int",
+                      "CacheUsedBlocks": "int",
+                      "CacheReadHits": "int",
+                      "Pool": "int",
+                      "CacheSettings": "str",
+                      "Cachemode": "str",
+                      "AutoTune": "bool",
+                      "CacheWriteHits": "int"
+                    }
+                  }
+                },
+                "MemUsed": "int",
+                "Avgload": "int",
+                "SecurityStatus": "int",
+                "Disks": {
+                  "/dev/sdc": {
+                    "path": "str",
+                    "size": "int",
+                    "last_scan": {
+                      "seconds": "int",
+                      "nanos": "int"
+                    },
+                    "online": "bool",
+                    "id": "str",
+                    "medium": "int",
+                    "used": "int",
+                    "seq_write": "int",
+                    "rotation_speed": "str"
+                  }
+                },
+                "Id": "str",
+                "MemFree": "int",
+                "SchedulerNodeName": "str"
+              }
+            ]
+          },
+          "ReportingStartTime": "int",
+          "storage_node_count": "int",
+          "metered_time": "str",
+          "agent_name": "str",
+          "cluster_uuid": "str",
+          "usage_type": "str",
+          "baremetal_node_count": "int",
+          "storageless_node_count": "int",
+          "pod_metrics_count": "int",
+          "volume_count": "int",
+          "virtual_machine_node_count": "int",
+          "CloudSnapSchedNum": "int",
+          "ClusterID": "str",
+          "InternalKvdb": "bool",
+          "Scheduler": "str",
+          "Licenses": {
+            "typ": "str",
+            "List": [
+              {
+                "Type": "str",
+                "Description": "str",
+                "Enablement": "str",
+                "Notice": "str",
+                "Hidden": "bool",
+                "Expiry": "str",
+                "Name": "str"
+              }
+            ],
+            "exp": "str",
+            "ls": "str"
+          },
+          "ClusterUUID": "str",
+          "LocalSnapsNum": "int",
+          "Volumes": [
+            {
+              "mount_options": {
+                "options": {
+                  "discard": "str"
+                }
+              },
+              "usage": "int",
+              "format": "int",
+              "device_path": "str",
+              "replica_sets": [
+                {
+                  "pool_uuids": [
+                    {}
+                  ],
+                  "nodes": [
+                    {}
+                  ]
+                }
+              ],
+              "runtime_state": [
+                {
+                  "runtime_state": {
+                    "PXReplReAddNodeMid": "str",
+                    "PXReplReAddPools": "str",
+                    "ReplicaSetCurr": "str",
+                    "ReplicaSetCurrMid": "str",
+                    "ReplRemoveMids": "str",
+                    "RuntimeState": "str",
+                    "ReplicaSetCreateMid": "str",
+                    "ID": "str",
+                    "ReplNodePools": "str"
+                  }
+                }
+              ],
+              "detach_time": {
+                "seconds": "int",
+                "nanos": "int"
+              },
+              "spec": {
+                "xattr": "int",
+                "size": "int",
+                "aggregation_level": "int",
+                "cos": "int",
+                "volume_labels": {
+                  "namespace": "str",
+                  "repl": "str",
+                  "pvc": "str",
+                  "app": "str",
+                  "component": "str",
+                  "release": "str",
+                  "helm.sh/resource-policy": "str",
+                  "heritage": "str",
+                  "chart": "str",
+                  "app.kubernetes.io/managed-by": "str",
+                  "type": "str",
+                  "app.kubernetes.io/name": "str",
+                  "app.kubernetes.io/instance": "str",
+                  "app.kubernetes.io/component": "str"
+                },
+                "format": "int",
+                "io_profile": "int",
+                "ha_level": "int",
+                "queue_depth": "int",
+                "block_size": "int"
+              },
+              "attach_time": {
+                "seconds": "int",
+                "nanos": "int"
+              },
+              "sharedv4_mount_options": {
+                "options": {
+                  "actimeo": "str",
+                  "retrans": "str",
+                  "timeo": "str",
+                  "proto": "str",
+                  "vers": "str",
+                  "soft": "str"
+                }
+              },
+              "attached_on": "str",
+              "ctime": {
+                "seconds": "int",
+                "nanos": "int"
+              },
+              "fpConfig": {
+                "setup_on": "int",
+                "status": "int"
+              },
+              "id": "str",
+              "state": "int",
+              "locator": {
+                "volume_labels": {
+                  "namespace": "str",
+                  "repl": "str",
+                  "pvc": "str",
+                  "app": "str",
+                  "component": "str",
+                  "release": "str",
+                  "helm.sh/resource-policy": "str",
+                  "heritage": "str",
+                  "chart": "str",
+                  "app.kubernetes.io/managed-by": "str",
+                  "type": "str",
+                  "app.kubernetes.io/name": "str",
+                  "app.kubernetes.io/instance": "str",
+                  "app.kubernetes.io/component": "str",
+                  "cloudsnap-usage": "str",
+                  "cloudsnap-source": "str"
+                },
+                "name": "str"
+              },
+              "status": "int",
+              "derived_io_profile": "int",
+              "attach_path": [
+                {}
+              ],
+              "attached_state": "int"
+            }
+          ],
+          "Storage": {
+            "enable_integrity": "bool",
+            "devices": [
+              {}
+            ],
+            "thin_pool_zero": "bool",
+            "fastpath_allow_multi_replicas": "bool",
+            "max_storage_nodes_per_zone": "int",
+            "kvdb_dev": "str",
+            "fastpath_secure": "bool",
+            "max_count": "int",
+            "max_drive_set_count": "int",
+            "max_storage_nodes_per_zone_per_nodegroup": "int",
+            "fastpath_enable": "bool",
+            "num_threads": "int",
+            "dedicated_cache": "bool",
+            "fastpath_protocol": "str",
+            "async_io": "bool",
+            "journal_dev": "str",
+            "rt_opts": {
+              "rpc_timeout_sec": "int",
+              "num_io_threads": "int",
+              "enable_pwrite_merge": "int",
+              "enable_relaxed_rset_degradation": "int",
+              "num_threads": "int",
+              "num_cpu_threads": "int",
+              "rset_degraded_timeout_period": "int",
+              "rt_opts_conf_high": "int",
+              "enable-failure-domain-awareness": "int",
+              "default-io-profile": "int",
+              "px_storev2": "int",
+              "wait-before-retry-period-in-secs": "int"
+            },
+            "system_metadata_dev": "str",
+            "node_pool_label": "str",
+            "type": "str"
+          },
+          "CloudSnapsNum": "int",
+          "SchedulerVersion": "str",
+          "Version": "str",
+          "LocalSnapSchedNum": "int",
+          "Alerts": [
+            {
+              "severity": "str",
+              "component": {
+                "resource_type": "str",
+                "id": "str"
+              },
+              "code": "int",
+              "array": {
+                "id": "str"
+              },
+              "created": "int",
+              "origin": "str",
+              "description": "str",
+              "updated": "int"
+            }
+          ],
+          "Discovery": [
+            {}
+          ],
+          "volumes": [
+            {
+              "shared": "str",
+              "size_bytes": "int",
+              "used_bytes": "int",
+              "id": "str"
+            }
+          ],
+          "pod_metrics": [
+            {
+              "is_running": "bool",
+              "image_name": [
+                {}
+              ],
+              "finished_at": "str",
+              "name": "str",
+              "namespace": "str",
+              "started_at": "str",
+              "pod_hour": "int",
+              "prev_duration": "int"
+            }
+          ],
+          "pod_hour": "float",
+          "MarketPlace": "str",
+          "subscription_id": "str",
+          "account_id": "str",
+          "CloudProvider": "str"
+        },
+        "http": {
+          "clientHost": "str",
+          "contentType": "str"
+        }
+      },
+      "logtypes": [
+        {}
+      ],
+      "unparsed": "NoneType",
+      "tags": [
+        {}
+      ]
+    }
+  ],
+  "next": "str"
+}
