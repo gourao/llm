@@ -1,6 +1,7 @@
 import os
 import sys
 import environ
+import pdb
 
 import pymongo
 import json
@@ -9,7 +10,6 @@ from langchain import OpenAI
 from langchain.chat_models import ChatOpenAI
 from langchain.chains import LLMChain
 from langchain.prompts import PromptTemplate
-
 
 env = environ.Env()
 environ.Env.read_env()
@@ -49,7 +49,7 @@ print("Using :", mongo_uri, ":", "["+db_name+"]")
 # setup llm
 llm = ChatOpenAI(model_name="gpt-3.5-turbo",
 	temperature=0.7,
-	max_tokens=1024,
+	# max_tokens=1024,
 	openai_api_key=API_KEY)
 
 # DEBUG
@@ -62,6 +62,7 @@ dbg_prompt = PromptTemplate(
 )
 dbg_chain = LLMChain(llm=llm, prompt=dbg_prompt)
 
+# pdb.set_trace()
 print(dbg_chain.run({
 	'schema': schema
 }))
