@@ -30,6 +30,11 @@ Or you can change the connection string in `chatdb.py`
 
 This will work with any database schema and content.
 
+To run postgres in Docker:
+```
+docker run --name my-postgres-container -e POSTGRES_PASSWORD=<your-password> -d -p 5432:5432 postgres
+```
+
 ```
 python3 chatdb.py DB_CONNECT_STRING
 ```

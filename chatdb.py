@@ -31,7 +31,7 @@ db = SQLDatabase.from_uri(
 # setup llm
 llm = ChatOpenAI(model_name="gpt-3.5-turbo",
 	temperature=0,
-	max_tokens=1000,
+	# max_tokens=1000,
 	openai_api_key=API_KEY)
 
 # Create db chain
